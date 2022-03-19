@@ -1,4 +1,4 @@
-{ stdenvNoCC, lib, fetchurl, undmg, unzip, unpkg, cask }:
+{ stdenvNoCC, lib, fetchurl, undmg, unpkg, cask }:
 let
   # curl -o packages/brewCasks/cask.json https://formulae.brew.sh/api/cask.json
   version = lib.lists.last (builtins.split "," cask.version);
@@ -15,7 +15,6 @@ stdenvNoCC.mkDerivation {
 
   nativeBuildInputs = [
     undmg
-    unzip
     unpkg
   ];
 

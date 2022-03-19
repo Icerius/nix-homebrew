@@ -1,33 +1,47 @@
 {
   description = "Homebrew casks 2 nix";
 
-  outputs = { self, nixpkgs, ... }:
+  inputs.flake-utils.url = "github:numtide/flake-utils";
+
+  outputs = { self, nixpkgs, flake-utils, ... }:
     let
       overlay = import ./overlay.nix;
-      system = "x86_64-darwin";
-      overlays = [ overlay ];
-      pkgs = import nixpkgs {
-        inherit
-          overlays
-          system
-          ;
-      };
     in
-    {
+    flake-utils.lib.eachSystem [
+      flake-utils.lib.system.x86_64-darwin
+      flake-utils.lib.system.aarch64-darwin
+    ]
+      (system:
+        let
+          overlays = [ overlay ];
+          pkgs = import nixpkgs {
+            inherit
+              overlays
+              system
+              ;
+          };
+        in
+        {
+
+          checks = {
+            inherit (pkgs.casks)
+              ferdi
+              jetbrains-toolbox
+              amethyst
+              alt-tab
+              choosy
+              ;
+            inherit (pkgs) unpkg;
+          };
+          packages = pkgs.casks;
+          devShell = (import ./shell.nix) {
+            inherit pkgs;
+          };
+        }
+      ) // {
       inherit overlay;
-      checks.${system} = {
-        inherit (pkgs.casks)
-          ferdi
-          jetbrains-toolbox
-          amethyst
-          alt-tab
-          #choosy # Broken, double unpack needed
-          ;
-        inherit (pkgs) unpkg;
-      };
-      packages.${system} = pkgs.casks;
-      devShell.${system} = (import ./shell.nix) {
-        inherit pkgs;
+      overlays = {
+        default = overlay;
       };
     };
 }

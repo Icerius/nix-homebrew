@@ -1,4 +1,18 @@
-unpackCmdHooks+=(_tryUnpackPkg)
+unpackCmdHooks+=(_tryUnpackPkg _tryUnzip)
+_tryUnzip() {
+    if ! [[ "$curSrc" =~ \.zip$ ]]; then return 1; fi
+    unzip -qq "$curSrc"
+
+    echo Debug
+    for file in *
+    do
+      if [[ "${file}" =~ \.pkg$ ]]
+      then 
+        curSrc=$file
+        _tryUnpackPkg
+      fi
+    done
+}
 _tryUnpackPkg() {
   if ! [[ "${curSrc}" =~ \.pkg$ ]]; then return 1; fi
   xar --dump-header -f "${curSrc}" | grep -q "^magic:\s\+[0-9a-z]\+\s\+(OK)$"

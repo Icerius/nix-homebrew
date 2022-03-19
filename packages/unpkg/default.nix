@@ -1,11 +1,11 @@
 # Original version: https://discourse.nixos.org/t/feedback-darwin-installapplication/11324/3
-{ lib, stdenvNoCC, xar }:
+{ lib, stdenvNoCC, xar, unzip, cpio }:
 
 stdenvNoCC.mkDerivation rec {
   version = "1.0.0";
   pname = "unpkg";
 
-  nativeBuildInputs = [ xar ];
+  nativeBuildInputs = [ xar unzip cpio ];
   setupHook = ./setup-hook.sh;
 
   src = ./.;
@@ -13,6 +13,8 @@ stdenvNoCC.mkDerivation rec {
   installPhase = ''
     mkdir -p $out/bin
     ln -s $(command -v xar) $out/bin/xar
+    ln -s $(command -v unzip) $out/bin/unzip
+    ln -s $(command -v cpio) $out/bin/cpio
   '';
 
   meta = with lib; {
