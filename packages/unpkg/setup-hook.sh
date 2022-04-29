@@ -1,9 +1,7 @@
 unpackCmdHooks+=(_tryUnpackPkg _tryUnzip)
 _tryUnzip() {
     if ! [[ "$curSrc" =~ \.zip$ ]]; then return 1; fi
-    unzip -qq "$curSrc"
-
-    echo Debug
+      unzip -qq "$curSrc" || exit 1
     for file in *
     do
       if [[ "${file}" =~ \.pkg$ ]]
