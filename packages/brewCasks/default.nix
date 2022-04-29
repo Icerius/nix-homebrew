@@ -9,8 +9,8 @@ let
   armOverrides =
     if pkgs.system == "aarch64-darwin" then {
       ferdi = {
-        sha256 = "7fcddbac8868c45bf457118cb2d25e2ceb0aeea2ab0662ebfcdb6c07d9bb2241";
-        url = "https://github.com/getferdi/ferdi/releases/download/v5.8.0/Ferdi-5.8.0-arm64.dmg";
+        sha256 = "ec7ccceba08f1c581290d6ce4f5fa5478bed2c713c592d0298856f7b2719f35d";
+        url = "https://github.com/getferdi/ferdi/releases/download/v5.8.1/Ferdi-5.8.1-arm64.dmg";
       };
     } else { };
 
