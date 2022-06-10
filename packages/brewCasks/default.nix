@@ -12,6 +12,11 @@ let
         sha256 = "ec7ccceba08f1c581290d6ce4f5fa5478bed2c713c592d0298856f7b2719f35d";
         url = "https://github.com/getferdi/ferdi/releases/download/v5.8.1/Ferdi-5.8.1-arm64.dmg";
       };
+jetbrains-toolbox = {
+sha256 = "bc0564476d767841a85701e2b2a7ee5d28688ee87bb381cc4172612e6938a71a";
+url = "https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.24.12080-arm64.dmg";
+};
+
     } else { };
 
   apps = builtins.listToAttrs (builtins.map (c: { name = c.token; value = c; }) validCasks);
