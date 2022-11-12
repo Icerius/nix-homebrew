@@ -7,7 +7,7 @@ let
   src = fetchurl {
     url = cask.url;
     sha256 = cask.sha256;
-    name = builtins.replaceStrings [ "%20" "(" ")" "%" "&" "!" "#" ] [ "_" "" "" "" "" "" "" ] (builtins.baseNameOf cask.url);
+    name = builtins.replaceStrings [ "%20" "(" ")" "%" "&" "!" "#" "@" ] [ "_" "" "" "" "" "" "" ""] (builtins.baseNameOf cask.url);
   };
 in
 stdenvNoCC.mkDerivation {
