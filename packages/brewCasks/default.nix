@@ -11,13 +11,13 @@
   armOverrides =
     if pkgs.system == "aarch64-darwin"
     then {
-      ferdi = {
-        sha256 = "ec7ccceba08f1c581290d6ce4f5fa5478bed2c713c592d0298856f7b2719f35d";
-        url = "https://github.com/getferdi/ferdi/releases/download/v5.8.1/Ferdi-5.8.1-arm64.dmg";
+      ferdium = {
+        sha256 = "97f9e4f2169c7f2768dea057732713683ed624d8af8d92a4a4ff8f3d9e7227d4";
+        url = "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3/Ferdium-mac-6.2.3-arm64.dmg";
       };
       jetbrains-toolbox = {
-        sha256 = "7320815edc66d35f50c110b11266bed6190250201bb37f2413e90b56307686c5";
-        url = "https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.26.5.13419-arm64.dmg";
+        sha256 = "051cced2b1e84cc1577c4000308d95726e0ed6725dc81df87b9f33837544d21e";
+        url = "https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.27.2.13801-arm64.dmg";
       };
     }
     else {};

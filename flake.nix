@@ -25,7 +25,7 @@
 
           checks = {
             inherit (pkgs.casks)
-              ferdi
+              ferdium
               jetbrains-toolbox
               amethyst
               alt-tab
