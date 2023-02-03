@@ -12,8 +12,8 @@
     if pkgs.system == "aarch64-darwin"
     then {
       ferdium = {
-        sha256 = "97f9e4f2169c7f2768dea057732713683ed624d8af8d92a4a4ff8f3d9e7227d4";
-        url = "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3/Ferdium-mac-6.2.3-arm64.dmg";
+        sha256 = "555380ed0ff989555c0c08eafefdafbb60a7e227b3a432380c8a0eed75195808";
+        url = "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4/Ferdium-mac-6.2.4-arm64.dmg";
       };
       jetbrains-toolbox = {
         sha256 = "051cced2b1e84cc1577c4000308d95726e0ed6725dc81df87b9f33837544d21e";
