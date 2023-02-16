@@ -1,13 +1,14 @@
-{ stdenvNoCC, lib, fetchurl, undmg, unpkg, cask }:
+{ stdenvNoCC, lib, fetchurl, undmg, unpkg, cask, system }:
 let
   # curl -o packages/brewCasks/cask.json https://formulae.brew.sh/api/cask.json
+  isArm = system == "aarch64-darwin";
+  hasVariation = isArm && cask.variations ? "arm64_ventura" && cask.variations.arm64_ventura ? "url";
   version = lib.lists.last (builtins.split "," cask.version);
   pname = cask.token;
-  nameApp = "${pname}.app";
+  inherit (if hasVariation then cask.variations.arm64_big_sur else cask) url sha256;
   src = fetchurl {
-    url = cask.url;
-    sha256 = cask.sha256;
-    name = builtins.replaceStrings [ "%20" "(" ")" "%" "&" "!" "#" "@" ] [ "_" "" "" "" "" "" "" ""] (builtins.baseNameOf cask.url);
+    inherit url sha256;
+    name = builtins.replaceStrings [ "%20" "(" ")" "%" "&" "!" "#" "@" ] [ "_" "" "" "" "" "" "" ""] (builtins.baseNameOf url);
   };
 in
 stdenvNoCC.mkDerivation {
