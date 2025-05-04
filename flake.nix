@@ -1,9 +1,12 @@
 {
   description = "Homebrew casks 2 nix";
 
-  inputs.flake-utils.url = "github:numtide/flake-utils";
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
+  };
 
-  outputs = { self, nixpkgs, flake-utils, ... }:
+  outputs = { nixpkgs, flake-utils, ... }:
     let
       overlay = import ./overlay.nix;
     in
@@ -30,6 +33,8 @@
               amethyst
               alt-tab
               choosy
+              neovide
+              ghostty
               ;
             inherit (pkgs) unpkg;
           };
