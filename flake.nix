@@ -35,6 +35,7 @@
               choosy
               neovide
               ghostty
+              secretive
               ;
             inherit (pkgs) unpkg;
           };
